@@ -12,6 +12,13 @@ import (
 
 func Setup(router *fiber.App) {
 	router.Post("/generate", func(c *fiber.Ctx) error {
+		authHeader := c.Get("Authorization")
+		if authHeader != "Bearer "+config.Config.AuthorizationKey {
+			return c.Status(fiber.StatusUnauthorized).JSON(types.ErrorResponse{
+				Error: "Invalid or missing Authorization header",
+			})
+		}
+
 		var payload types.Payload
 
 		if err := c.BodyParser(&payload); err != nil {

@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"thunderbird-ai-compose-server/crypto"
 	"thunderbird-ai-compose-server/types"
 
 	"github.com/joho/godotenv"
@@ -15,10 +16,11 @@ func init() {
 	godotenv.Load()
 
 	Config = types.ServerConfig{
-		Port:     getEnvAsInt("PORT"),
-		Provider: types.Provider(getEnv("PROVIDER")),
-		Model:    getEnv("MODEL"),
-		APIKey:   getEnv("API_KEY"),
+		AuthorizationKey: crypto.GenerateSecretKey(),
+		Port:             getEnvAsInt("PORT"),
+		Provider:         types.Provider(getEnv("PROVIDER")),
+		Model:            getEnv("MODEL"),
+		APIKey:           getEnv("API_KEY"),
 	}
 
 	if Config.Port == 0 {

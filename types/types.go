@@ -8,10 +8,11 @@ const (
 )
 
 type ServerConfig struct {
-	Port     int
-	Provider Provider
-	Model    string
-	APIKey   string
+	AuthorizationKey string
+	Port             int
+	Provider         Provider
+	Model            string
+	APIKey           string
 }
 
 type Identity struct {
