@@ -36,8 +36,6 @@ func init() {
 	if Config.APIKey == "" {
 		log.Fatal("API_KEY environment variable is required")
 	}
-
-	log.Printf("Configuration loaded: %+v\n", Config)
 }
 
 func getEnv(key string) string {
