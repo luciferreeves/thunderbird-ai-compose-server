@@ -1,4 +1,4 @@
-package main
+package types
 
 type Provider string
 
@@ -39,4 +39,13 @@ type ComposeContext struct {
 type Payload struct {
 	Prompt  string         `json:"prompt"`
 	Context ComposeContext `json:"context"`
+}
+
+type SuccessResponse struct {
+	Response string  `json:"response"`
+	Payload  Payload `json:"payload"`
+}
+
+type ErrorResponse struct {
+	Error string `json:"error"`
 }

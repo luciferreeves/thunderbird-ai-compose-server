@@ -1,21 +1,22 @@
-package main
+package config
 
 import (
 	"log"
 	"os"
 	"strconv"
+	"thunderbird-ai-compose-server/types"
 
 	"github.com/joho/godotenv"
 )
 
-var Config ServerConfig
+var Config types.ServerConfig
 
 func init() {
 	godotenv.Load()
 
-	Config = ServerConfig{
+	Config = types.ServerConfig{
 		Port:     getEnvAsInt("PORT"),
-		Provider: Provider(getEnv("PROVIDER")),
+		Provider: types.Provider(getEnv("PROVIDER")),
 		Model:    getEnv("MODEL"),
 		APIKey:   getEnv("API_KEY"),
 	}
@@ -25,7 +26,7 @@ func init() {
 	}
 
 	if Config.Provider == "" {
-		Config.Provider = Gemini
+		Config.Provider = types.Gemini
 	}
 
 	if Config.Model == "" {
